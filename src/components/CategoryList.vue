@@ -1,21 +1,21 @@
 <template>
   <div>
-    <ForumListItem
-      v-for="forum in forums"
-      :forum="forum"
-      :key="forum['.key']"
+    <CategoryListItem
+      v-for="category in categories"
+      :category="category"
+      :key="category['.key']"
     />
   </div>
 </template>
 
 <script>
-    import ForumListItem from './ForumListItem'
+    import CategoryListItem from './CategoryListItem'
     export default {
       components: {
-        ForumListItem
+        CategoryListItem
       },
       props: {
-        forums: {
+        categories: {
           required: true,
           type: Array
         }
