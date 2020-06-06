@@ -4,7 +4,7 @@
 
     <div class="post-list">
       <div v-for="postId in thread.posts"
-           class="post"
+           class="post" :key="postId"
       >
         <div class="user-info">
           <a href="#" class="user-name">{{users[posts[postId].userId].name}}</a>
