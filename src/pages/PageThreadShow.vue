@@ -1,5 +1,5 @@
 <template>
-  <div class="col-large push-top">
+  <div v-if="thread && user" class="col-large push-top">
     <h1>{{thread.title}}
 
       <router-link
@@ -22,8 +22,10 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
   import PostList from '@/components/PostList'
   import PostEditor from '@/components/PostEditor'
+  import {countObjectProperties} from '@/utils'
   export default {
     components: {
       PostList,
@@ -46,20 +48,30 @@
         return this.$store.state.users[this.thread.userId]
       },
       contributorsCount () {
-        // find the replies
-        const replies = Object.keys(this.thread.posts)
-          .filter(postId => postId !== this.thread.firstPostId)
-          .map(postId => this.$store.state.posts[postId])
-        // get the user ids
-        const userIds = replies.map(post => post.userId)
-        // count the unique ids
-        return userIds.filter((item, index) => index === userIds.indexOf(item)).length
+        return countObjectProperties(this.thread.contributors)
       },
       posts () {
         const postIds = Object.values(this.thread.posts)
         return Object.values(this.$store.state.posts)
           .filter(post => postIds.includes(post['.key']))
       }
+    },
+    methods: {
+      ...mapActions(['fetchThread', 'fetchUser', 'fetchPosts'])
+    },
+    created () {
+      // fetch thread
+      this.fetchThread({id: this.id})
+        .then(thread => {
+          // fetch user
+          this.fetchUser({id: thread.userId})
+          this.fetchPosts({ids: Object.keys(thread.posts)})
+            .then(posts => {
+              posts.forEach(post => {
+                this.fetchUser({id: post.userId})
+              })
+            })
+        })
     }
   }
 </script>
