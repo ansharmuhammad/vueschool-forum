@@ -1,32 +1,41 @@
 <template>
-  <div class="forum-list">
+  <div class="post">
+    <div class="user-info">
+      <a href="#" class="user-name">{{user.name}}</a>
 
-    <h2 class="list-title">
-      <router-link :to="{name: 'Category', params: {id: category['.key']}}">
-        {{ category.name }}
-      </router-link>
-    </h2>
+      <a href="#">
+        <img class="avatar-large" :src="user.avatar" alt="">
+      </a>
 
-    <ForumList :forums="categoryForums"/>
+      <p class="desktop-only text-small">{{userPostsCount}} posts</p>
+    </div>
+
+    <div class="post-content">
+      <div>
+        {{post.text}}
+      </div>
+    </div>
+
+    <div class="post-date text-faded">
+      <AppDate :timestamp="post.publishedAt"/>
+    </div>
   </div>
 </template>
 
 <script>
-    import ForumList from './ForumList'
     export default {
-      components: {
-        ForumList
-      },
       props: {
-        category: {
+        post: {
           required: true,
           type: Object
         }
       },
       computed: {
-        categoryForums () {
-          return Object.values(this.$store.state.forums)
-            .filter(forum => forum.categoryId === this.category['.key'])
+        user () {
+          return this.$store.state.users[this.post.userId]
+        },
+        userPostsCount () {
+          return Object.keys(this.user.posts).length
         }
       }
     }
