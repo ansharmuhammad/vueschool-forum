@@ -85,19 +85,23 @@
           type: Object
         }
       },
+
       data () {
         return {
           activeUser: {...this.user}
         }
       },
+
       computed: {
         userThreadsCount () {
           return this.$store.getters['users/userThreadsCount'](this.user['.key'])
         },
+
         userPostsCount () {
           return this.$store.getters['users/userPostsCount'](this.user['.key'])
         }
       },
+
       validations: {
         activeUser: {
           name: {
@@ -124,6 +128,7 @@
           }
         }
       },
+
       methods: {
         save () {
           this.$v.activeUser.$touch()
@@ -132,6 +137,7 @@
             this.$router.push({name: 'Profile'})
           }
         },
+
         cancel () {
           this.$router.push({name: 'Profile'})
         }
@@ -140,4 +146,5 @@
 </script>
 
 <style scoped>
+
 </style>

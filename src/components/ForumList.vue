@@ -14,6 +14,7 @@
       components: {
         ForumListItem
       },
+
       props: {
         forums: {
           required: true,
@@ -24,4 +25,5 @@
 </script>
 
 <style scoped>
+
 </style>

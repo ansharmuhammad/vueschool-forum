@@ -26,6 +26,7 @@
     height: 40px;
     position: relative;
   }
+
   .sk-fading-circle .sk-circle {
     width: 100%;
     height: 100%;
@@ -33,6 +34,7 @@
     left: 0;
     top: 0;
   }
+
   .sk-fading-circle .sk-circle:before {
     content: '';
     display: block;
@@ -143,10 +145,12 @@
     -webkit-animation-delay: -0.1s;
     animation-delay: -0.1s;
   }
+
   @-webkit-keyframes sk-circleFadeDelay {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; }
   }
+
   @keyframes sk-circleFadeDelay {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; }

@@ -44,6 +44,7 @@
           default: ''
         }
       },
+
       data () {
         return {
           form: {
@@ -52,6 +53,7 @@
           }
         }
       },
+
       validations: {
         form: {
           title: {
@@ -64,11 +66,13 @@
           }
         }
       },
+
       computed: {
         isUpdate () {
           return !!this.title
         }
       },
+
       methods: {
         save () {
           this.$v.form.$touch()
@@ -76,6 +80,7 @@
             this.$emit('save', {title: this.form.title, text: this.form.text})
           }
         },
+
         cancel () {
           this.$emit('cancel')
         }
@@ -84,4 +89,5 @@
 </script>
 
 <style scoped>
+
 </style>

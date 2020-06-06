@@ -14,6 +14,7 @@
       components: {
         CategoryListItem
       },
+
       props: {
         categories: {
           required: true,
@@ -24,4 +25,5 @@
 </script>
 
 <style scoped>
+
 </style>

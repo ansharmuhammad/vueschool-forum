@@ -32,45 +32,56 @@
   import PostEditor from '@/components/PostEditor'
   import {countObjectProperties} from '@/utils'
   import asyncDataStatus from '@/mixins/asyncDataStatus'
+
   export default {
     components: {
       PostList,
       PostEditor
     },
+
     mixins: [asyncDataStatus],
+
     props: {
       id: {
         required: true,
         type: String
       }
     },
+
     computed: {
       ...mapGetters({
         authUser: 'auth/authUser'
       }),
+
       thread () {
         return this.$store.state.threads.items[this.id]
       },
+
       repliesCount () {
         return this.$store.getters['threads/threadRepliesCount'](this.thread['.key'])
       },
+
       user () {
         return this.$store.state.users.items[this.thread.userId]
       },
+
       contributorsCount () {
         return countObjectProperties(this.thread.contributors)
       },
+
       posts () {
         const postIds = Object.values(this.thread.posts)
         return Object.values(this.$store.state.posts.items)
           .filter(post => postIds.includes(post['.key']))
       }
     },
+
     methods: {
       ...mapActions('threads', ['fetchThread']),
       ...mapActions('users', ['fetchUser']),
       ...mapActions('posts', ['fetchPosts'])
     },
+
     created () {
       // fetch thread
       this.fetchThread({id: this.id})

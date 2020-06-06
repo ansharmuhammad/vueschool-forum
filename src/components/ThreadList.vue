@@ -15,6 +15,7 @@
     components: {
       ThreadListItem
     },
+
     props: {
       threads: {
         required: true,

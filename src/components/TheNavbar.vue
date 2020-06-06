@@ -65,17 +65,20 @@
       clickOutside,
       handleScroll
     },
+
     data () {
       return {
         userDropdownOpen: false,
         mobileNavOpen: false
       }
     },
+
     computed: {
       ...mapGetters({
         'user': 'auth/authUser'
       })
     },
+
     methods: {
       closeUserDropdown () {
         this.userDropdownOpen = false
@@ -88,4 +91,5 @@
 </script>
 
 <style scoped>
+
 </style>

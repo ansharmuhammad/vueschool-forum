@@ -12,22 +12,26 @@
   import TheNavbar from '@/components/TheNavbar'
   import AppSpinner from '@/components/AppSpinner'
   import NProgress from 'nprogress'
+
   export default {
     components: {
       TheNavbar,
       AppSpinner
     },
+
     data () {
       return {
         showPage: false
       }
     },
+
     methods: {
       pageReady () {
         this.showPage = true
         NProgress.done()
       }
     },
+
     created () {
       NProgress.configure({
         speed: 200,
@@ -46,6 +50,7 @@
 <style>
 @import "assets/css/style.css";
 @import "~nprogress/nprogress.css";
+
 #nprogress .bar {
   background: #57AD8D;
 }

@@ -1,61 +1,29 @@
 <template>
-  <div class="post">
-    <div class="user-info">
-      <a href="#" class="user-name">{{user.name}}</a>
-
-      <a href="#">
-        <img class="avatar-large" :src="user.avatar" alt="">
-      </a>
-
-      <p class="desktop-only text-small">{{userPostsCount}} posts</p>
-    </div>
-
-    <div class="post-content">
-      <div v-if="!editing">
-        {{post.text}}
-      </div>
-      <div v-else>
-        <PostEditor
-          :post="post"
-          @save="editing = false"
-        />
-      </div>
-    </div>
-
-    <div class="post-date text-faded">
-      <AppDate :timestamp="post.publishedAt"/>
-    </div>
+  <div class="post-list">
+    <PostListItem
+      v-for="post in posts"
+      :post="post"
+      :key="post['.key']"
+    />
   </div>
 </template>
 
 <script>
-    import {countObjectProperties} from '@/utils'
-    import PostEditor from './PostEditor'
+    import PostListItem from './PostListItem'
     export default {
-      props: {
-        post: {
-          required: true,
-          type: Object
-        }
-      },
       components: {
-        PostEditor
+        PostListItem
       },
-      data () {
-        return {
-          editing: false
-        }
-      },
-      computed: {
-        user () {
-          return this.$store.state.users[this.post.userId]
-        },
-        userPostsCount () {
-          return countObjectProperties(this.user.posts)
+
+      props: {
+        posts: {
+          required: true,
+          type: Array
         }
       }
     }
 </script>
 
 <style scoped>
+
 </style>

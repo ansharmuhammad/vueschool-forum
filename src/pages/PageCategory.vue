@@ -9,26 +9,32 @@
     import {mapActions} from 'vuex'
     import CategoryListItem from '@/components/CategoryListItem'
     import asyncDataStatus from '@/mixins/asyncDataStatus'
+
     export default {
       components: {
         CategoryListItem
       },
+
       mixins: [asyncDataStatus],
+
       props: {
         id: {
           required: true,
           type: String
         }
       },
+
       computed: {
         category () {
           return this.$store.state.categories.items[this.id]
         }
       },
+
       methods: {
         ...mapActions('categories', ['fetchCategory']),
         ...mapActions('forums', ['fetchForums'])
       },
+
       created () {
         this.fetchCategory({id: this.id})
           .then(category => this.fetchForums({ids: category.forums}))
@@ -38,4 +44,5 @@
 </script>
 
 <style scoped>
+
 </style>

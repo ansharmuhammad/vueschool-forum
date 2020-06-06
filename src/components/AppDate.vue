@@ -11,10 +11,12 @@
           type: Number
         }
       },
+
       filters: {
         humanFriendlyDate (date) {
           return moment.unix(date).format('MMMM Do YYYY, h:mm:ss a')
         },
+
         diffForHumans (date) {
           return moment.unix(date).fromNow()
         }
@@ -23,4 +25,5 @@
 </script>
 
 <style scoped>
+
 </style>

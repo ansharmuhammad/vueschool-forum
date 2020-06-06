@@ -24,6 +24,7 @@
         threadId: {
           required: false
         },
+
         post: {
           type: Object,
           validator: obj => {
@@ -40,35 +41,43 @@
           }
         }
       },
+
       data () {
         return {
           text: this.post ? this.post.text : ''
         }
       },
+
       computed: {
         isUpdate () {
           return !!this.post
         }
       },
+
       methods: {
         ...mapActions('posts', ['createPost', 'updatePost']),
+
         save () {
           this.persist()
             .then(post => {
               this.$emit('save', {post})
             })
         },
+
         cancel () {
           this.$emit('cancel')
         },
+
         create () {
           const post = {
             text: this.text,
             threadId: this.threadId
           }
           this.text = ''
+
           return this.createPost(post)
         },
+
         update () {
           const payload = {
             id: this.post['.key'],
@@ -76,6 +85,7 @@
           }
           return this.updatePost(payload)
         },
+
         persist () {
           return this.isUpdate ? this.update() : this.create()
         }
@@ -84,4 +94,5 @@
 </script>
 
 <style scoped>
+
 </style>

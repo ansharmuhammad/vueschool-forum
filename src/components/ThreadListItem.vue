@@ -36,6 +36,7 @@
         type: Object
       }
     },
+
     computed: {
       repliesCount () {
         return this.$store.getters['threads/threadRepliesCount'](this.thread['.key'])

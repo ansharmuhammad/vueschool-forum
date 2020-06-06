@@ -55,6 +55,7 @@
           }
         }
       },
+
       validations: {
         form: {
           email: {
@@ -67,6 +68,7 @@
           }
         }
       },
+
       methods: {
         signIn () {
           this.$v.form.$touch()
@@ -89,6 +91,7 @@
           this.$router.push(redirectTo)
         }
       },
+
       created () {
         this.$emit('ready')
       }
@@ -96,4 +99,5 @@
 </script>
 
 <style scoped>
+
 </style>

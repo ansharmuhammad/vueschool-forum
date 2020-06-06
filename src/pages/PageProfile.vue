@@ -29,23 +29,28 @@
     import UserProfileCardEditor from '@/components/UserProfileCardEditor'
     import {mapGetters} from 'vuex'
     import asyncDataStatus from '@/mixins/asyncDataStatus'
+
     export default {
       components: {
         PostList,
         UserProfileCard,
         UserProfileCardEditor
       },
+
       mixins: [asyncDataStatus],
+
       props: {
         edit: {
           type: Boolean,
           default: false
         }
       },
+
       computed: {
         ...mapGetters({
           user: 'auth/authUser'
         }),
+
         userPosts () {
           return this.$store.getters['users/userPosts'](this.user['.key'])
         }
@@ -58,4 +63,5 @@
 </script>
 
 <style scoped>
+
 </style>

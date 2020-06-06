@@ -13,16 +13,19 @@
 
 <script>
     import ForumList from './ForumList'
+
     export default {
       components: {
         ForumList
       },
+
       props: {
         category: {
           required: true,
           type: Object
         }
       },
+
       computed: {
         categoryForums () {
           return Object.values(this.$store.state.forums.items)
@@ -33,4 +36,5 @@
 </script>
 
 <style scoped>
+
 </style>

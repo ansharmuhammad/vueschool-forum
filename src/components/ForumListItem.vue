@@ -23,6 +23,7 @@
 
 <script>
     import {countObjectProperties} from '@/utils'
+
     export default {
       props: {
         forum: {
@@ -30,6 +31,7 @@
           type: Object
         }
       },
+
       computed: {
         threadsCount () {
           return countObjectProperties(this.forum.threads)
@@ -39,4 +41,5 @@
 </script>
 
 <style scoped>
+
 </style>
